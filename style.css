@@ -1,428 +1,264 @@
 /*
-Theme Name: GeneratePress Child
-Description: SUPR child theme – cernobily design system pro WooCommerce eshop.
-Author: suseneprazene.cz
-Template: generatepress
-Version: 1.2.0
+Theme Name: Astra Child
+Theme URI: https://wpastra.com/
+Author: tvé_jméno
+Author URI: https://tvojeweb.cz
+Template: astra
+Version: 1.0.0
+Description: Moderní černobílý eshop design pro Astra.
 */
 
-/* === GLOBALNI PROMENNE === */
-:root {
-    --color-bg:           #fff;
-    --color-text:         #111;
-    --color-muted:        #666;
-    --color-border:       #e0e0e0;
-    --color-btn-bg:       #111;
-    --color-btn-text:     #fff;
-    --color-sale:         #b85c1a;
-    --color-submenu-bg:   #111;
-    --color-submenu-text: #fff;
-    --font-heading:       'Cabinet Grotesk', sans-serif;
-    --font-body:          system-ui, sans-serif;
-    --transition:         0.2s ease;
-    --max-width:          1200px;
-}
+/* ===== Fonts ===== */
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,400&display=swap');
 
-*, *::before, *::after { box-sizing: border-box; }
-
-/* === BODY & TYPOGRAFIE === */
+/* ===== Základní barvy/body ===== */
 body {
-    background: var(--color-bg);
-    color: var(--color-text);
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    line-height: 1.6;
+  background: #111;
+  color: #f5f5f5;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--color-text);
-    margin-top: 0;
+/* ===== Hlavička a menu (Astra struktura) ===== */
+.main-header-bar {
+  background: #111;
+  border-bottom: 1px solid #262626;
 }
-h1 { font-size: 1.8rem; }
-h2 { font-size: 1.4rem; }
+
+.ast-site-identity, .ast-site-title {
+  color: #f5f5f5;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+}
+
+
+.main-header-menu,
+.ast-main-header-bar-navigation {
+  display: flex;
+  gap: 0;
+  align-items: center;
+}
+
+.main-header-menu .menu-item {
+  margin: 0;
+  padding: 0 20px 0 0;
+  position: relative;
+}
+
+.main-header-menu .menu-item:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  border-right: 1px dashed rgba(255,255,255,0.25);
+  height: 1.3em;
+  position: absolute;
+  right: 7px; top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.main-header-menu .menu-item a {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 1rem;
+  padding: 14px 0 8px 0;
+  transition: all .2s;
+}
+.main-header-menu .menu-item a:hover,
+.main-header-menu .menu-item a:focus-visible {
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.main-header-menu .current-menu-item > a,
+.main-header-menu .current-menu-ancestor > a {
+  position: relative;
+  box-shadow: 0 3px 0 0 #fff;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 6px;
+}
+
+/* ===== Submenu ===== */
+.main-header-menu .sub-menu {
+  background: #111;
+  border-radius: 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.30);
+}
+.main-header-menu .sub-menu a {
+  color: #f5f5f5;
+  font-size: 0.97rem;
+  padding: 10px 20px;
+}
+.main-header-menu .sub-menu a:hover {
+  background: #222;
+}
+
+/* ===== Hamburger menu – responsive ===== */
+.ast-header-break-point .main-header-bar {
+  position: relative;
+}
+.ast-header-break-point .main-header-bar .main-header-menu {
+  flex-direction: column;
+  background: #111;
+}
+.ast-header-break-point .ast-mobile-menu-buttons {
+  z-index: 999;
+}
+.ast-header-break-point .main-header-menu .menu-item {
+  padding: 10px 0;
+}
+.ast-header-break-point .main-header-menu .menu-item:not(:last-child)::after {
+  display: none;
+}
+
+/* ===== Headings & typografie ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+h1 { font-size: 1.8rem; margin-bottom: 1.2rem; }
+h2 { font-size: 1.4rem; margin-bottom: 1.2rem; }
 h3 { font-size: 1.1rem; }
 h4 { font-size: 0.95rem; }
-h5 { font-size: 0.875rem; }
-h6 { font-size: 0.85rem; }
+h5, h6 { font-size: 0.875rem; }
 
-a { color: var(--color-text); text-decoration: none; transition: opacity var(--transition); }
-a:hover { opacity: 0.7; }
-
-/* === HEADER – bile pozadi === */
-.site-header, #masthead, .site-header-wrap, .header-widget,
-.inside-header, .site-header .grid-container {
-    background: var(--color-bg) !important;
-    border-bottom: 1px solid var(--color-border);
-}
-
-/* === MENU – cerne pisemno na bilenem pozadi === */
-.main-navigation, .main-navigation ul, nav.main-navigation {
-    background: transparent;
-}
-
-.main-navigation a,
-.main-navigation ul li a {
-    color: var(--color-text) !important;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: transform var(--transition), opacity var(--transition);
-    display: inline-block;
-    padding-bottom: 2px;
-}
-
-.main-navigation a:hover,
-.main-navigation ul li a:hover {
-    opacity: 0.55;
-    transform: translateY(-1px);
-}
-
-/* Oddelovac – carkovaný */
-.main-navigation ul > li + li > a {
-    border-left: 1px dashed rgba(17,17,17,0.2);
-    padding-left: 16px;
-    margin-left: 8px;
-}
-
-/* Aktivni polozka – dvojite podtrzeni */
-.main-navigation .current-menu-item > a,
-.main-navigation .current-menu-ancestor > a,
-.main-navigation .current_page_item > a,
-.main-navigation .current_page_ancestor > a {
-    text-decoration: none;
-    border-bottom: 2px solid var(--color-text);
-    box-shadow: 0 3px 0 0 var(--color-text);
-    padding-bottom: 4px;
-    opacity: 1 !important;
-}
-
-/* Submenu – cerne */
-.main-navigation ul ul,
-.main-navigation .sub-menu {
-    background: var(--color-submenu-bg) !important;
-    border: none;
-    border-radius: 0 !important;
-    box-shadow: 4px 4px 0 0 rgba(0,0,0,0.25);
-    min-width: 220px;
-}
-
-.main-navigation ul ul li a,
-.main-navigation .sub-menu li a {
-    color: var(--color-submenu-text) !important;
-    font-size: 0.82rem;
-    font-weight: 400;
-    letter-spacing: 0.03em;
-    text-transform: none;
-    padding: 10px 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    display: block;
-    transition: background var(--transition), padding-left var(--transition);
-    border-left: none !important;
-    margin-left: 0 !important;
-}
-
-.main-navigation ul ul li a:hover,
-.main-navigation .sub-menu li a:hover {
-    background: rgba(255,255,255,0.1);
-    padding-left: 26px;
-    opacity: 1 !important;
-    transform: none;
-}
-
-.main-navigation ul ul li:last-child > a { border-bottom: none; }
-
-/* === HAMBURGER MENU === */
-.sp-hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 28px;
-    height: 20px;
-    background: transparent !important;
-    border: none !important;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1000;
-    box-shadow: none !important;
-    transform: none !important;
-}
-.sp-hamburger:hover { opacity: 0.75; background: transparent !important; transform: none !important; box-shadow: none !important; }
-.sp-hamburger span {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background: var(--color-text);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    transform-origin: center;
-}
-body.menu-open .sp-hamburger span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-body.menu-open .sp-hamburger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-body.menu-open .sp-hamburger span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-
-@media (max-width: 768px) {
-    .sp-hamburger { display: flex; }
-
-    .main-navigation ul, .nav-primary ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: var(--color-bg);
-        padding: 16px 0;
-        border-top: 1px solid var(--color-border);
-    }
-    body.menu-open .main-navigation ul,
-    body.menu-open .nav-primary ul { display: flex; }
-
-    .main-navigation ul li, .nav-primary ul li { width: 100%; }
-    .main-navigation ul li a, .nav-primary ul li a {
-        display: block;
-        padding: 12px 24px;
-        border-left: none !important;
-        margin-left: 0 !important;
-        color: var(--color-text) !important;
-    }
-    .main-navigation ul > li + li > a { border-left: none; padding-left: 24px; margin-left: 0; }
-
-    .main-navigation ul ul, .main-navigation .sub-menu {
-        position: static !important;
-        box-shadow: none;
-        border-left: 3px solid var(--color-border) !important;
-        margin-left: 20px;
-        background: #f5f5f5 !important;
-    }
-    .main-navigation ul ul li a, .main-navigation .sub-menu li a {
-        color: var(--color-text) !important;
-        border-bottom: 1px solid var(--color-border);
-    }
-}
-
-/* === TLACITKA – hranata, cerna, hover inverzni === */
+/* ===== Buttony ===== */
 button,
 .button,
 input[type="submit"],
-input[type="button"],
-input[type="reset"],
 .wp-block-button__link,
 .wc-block-components-button,
 .single_add_to_cart_button,
 .add_to_cart_button,
-.checkout-button,
-.woocommerce #respond input#submit,
-.woocommerce a.button,
-.woocommerce button.button,
-.woocommerce input.button,
-.custom-product-btn,
-.sp-inline-cart-btn {
-    background: var(--color-btn-bg) !important;
-    color: var(--color-btn-text) !important;
-    border: 1px solid var(--color-btn-bg) !important;
-    border-radius: 0 !important;
-    padding: 10px 20px !important;
-    font-size: 0.78rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.08em !important;
-    text-transform: uppercase !important;
-    cursor: pointer;
-    transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition), border-color var(--transition) !important;
-    display: inline-block;
-    text-decoration: none;
+.custom-product-btn {
+  background: #111;
+  color: #fff;
+  border: 1px solid #111;
+  border-radius: 0;
+  padding: 11px 28px;
+  font-size: 0.89rem;
+  font-family: inherit;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(.4,0,.2,1);
+  position: relative;
 }
-
 button:hover,
 .button:hover,
 input[type="submit"]:hover,
-input[type="button"]:hover,
-input[type="reset"]:hover,
 .wp-block-button__link:hover,
 .wc-block-components-button:hover,
 .single_add_to_cart_button:hover,
 .add_to_cart_button:hover,
-.checkout-button:hover,
-.woocommerce #respond input#submit:hover,
-.woocommerce a.button:hover,
-.woocommerce button.button:hover,
-.woocommerce input.button:hover,
-.custom-product-btn:hover,
-.sp-inline-cart-btn:hover {
-    background: var(--color-bg) !important;
-    color: var(--color-text) !important;
-    border-color: var(--color-text) !important;
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+.custom-product-btn:hover {
+  background: #f5f5f5;
+  color: #111;
+  border-color: #111;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.30);
 }
 
-button:focus-visible, .button:focus-visible,
-input[type="submit"]:focus-visible, a:focus-visible {
-    outline: 2px solid var(--color-text);
-    outline-offset: 3px;
+/* ===== Microinterakce & focus - accessibility ===== */
+a, button, input, select, textarea {
+  transition: all 0.2s;
+}
+:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2.5px;
 }
 
-/* === INPUT FIELDS – jemne zaobleni === */
-input[type="text"], input[type="email"], input[type="password"],
-input[type="tel"], input[type="number"], input[type="search"],
-input[type="url"], textarea, select {
-    border-radius: 4px;
-    border: 1px solid var(--color-border);
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(4px);
-    color: var(--color-text);
-    padding: 9px 12px;
-    font-size: 0.875rem;
-    transition: border-color var(--transition), box-shadow var(--transition);
-    width: 100%;
+/* ===== Input fields: glassmorphism hint ===== */
+input,
+textarea,
+select {
+  background: rgba(255,255,255,0.05);
+  color: #f5f5f5;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  padding: 10px 12px;
+  backdrop-filter: blur(3.5px);
+}
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #fff;
+  outline: 2px solid rgba(255,255,255,0.7);
 }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
-input[type="tel"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
-    border-color: var(--color-text);
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(17,17,17,0.12);
+/* ===== Custom scrollbar (globální) ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #181818;
+}
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7a7a7a;
 }
 
-/* === CUSTOM SCROLLBAR === */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #f0f0f0; }
-::-webkit-scrollbar-thumb { background: #bbb; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #888; }
-
-/* === LOADING PULSE === */
+/* ===== Loading animace pro obrázky ===== */
 @keyframes sp-pulse {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.5; }
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
-img[loading="lazy"]:not(.loaded) { animation: sp-pulse 1.5s ease-in-out infinite; }
-
-/* === SOCIAL IKONY – barevny hover === */
-.social-links a, .widget_social_widget a, [class*="social-icon"] {
-    transition: color var(--transition), transform var(--transition);
-    display: inline-block;
-}
-.social-links a:hover, .widget_social_widget a:hover, [class*="social-icon"]:hover {
-    transform: translateY(-2px);
-    opacity: 1 !important;
-}
-a[href*="facebook.com"]:hover  { color: #1877F2 !important; opacity: 1 !important; }
-a[href*="instagram.com"]:hover { color: #E4405F !important; opacity: 1 !important; }
-a[href*="youtube.com"]:hover   { color: #FF0000 !important; opacity: 1 !important; }
-a[href*="pinterest.com"]:hover { color: #E60023 !important; opacity: 1 !important; }
-a[href*="tiktok.com"]:hover    { color: #69C9D0 !important; opacity: 1 !important; }
-a[href*="twitter.com"]:hover, a[href*="x.com"]:hover { color: #1DA1F2 !important; opacity: 1 !important; }
-
-/* === WOOCOMMERCE === */
-.woocommerce span.onsale {
-    background: var(--color-sale) !important;
-    color: #fff !important;
-    border-radius: 0 !important;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 4px 8px;
-    min-width: auto;
-    min-height: auto;
-    line-height: 1.4;
+img.loading, img[loading="lazy"] {
+  animation: sp-pulse 1.5s linear infinite;
 }
 
-.woocommerce .price, .woocommerce-page .price {
-    color: var(--color-text);
-    font-weight: 700;
+/* ===== Social ikony hover ===== */
+a[href*="facebook"]:hover,
+.social-icon-facebook:hover { color: #1877F2 !important; }
+a[href*="instagram"]:hover,
+.social-icon-instagram:hover { color: #E4405F !important; }
+a[href*="youtube"]:hover,
+.social-icon-youtube:hover { color: #FF0000 !important; }
+a[href*="pinterest"]:hover,
+.social-icon-pinterest:hover { color: #E60023 !important; }
+a[href*="tiktok"]:hover,
+.social-icon-tiktok:hover { color: #010101 !important; }
+a[href*="twitter"]:hover,
+a[href*="x.com"]:hover,
+.social-icon-x:hover { color: #000 !important; }
+
+
+/* ===== WooCommerce – badge, cena, product list scrollbar ===== */
+.woocommerce span.onsale,
+.woocommerce ul.products li.product .onsale {
+  background: #b85c1a;
+  color: #fff;
+  border-radius: 0;
+  font-weight: 700;
+  top: 10px;
+  left: 10px;
+  padding: 5px 16px;
+  font-size: 0.88em;
 }
-.woocommerce .price del, .woocommerce-page .price del {
-    color: var(--color-muted) !important;
-    opacity: 1;
-    font-size: 0.85em;
-    font-weight: 400;
+.woocommerce ul.products li.product {
+  background: transparent;
 }
-.woocommerce .price ins, .woocommerce-page .price ins,
-.woocommerce .price ins bdi, .woocommerce-page .price ins bdi {
-    color: var(--color-sale) !important;
-    font-weight: 700;
-    text-decoration: none;
-    background: none;
+.woocommerce ul.products {
+  scrollbar-width: thin;
+  scrollbar-color: #555 #1a1a1a;
 }
 
-.woocommerce .star-rating span::before, .woocommerce .star-rating::before { color: var(--color-text); }
-
-.woocommerce-breadcrumb, .woocommerce nav.woocommerce-breadcrumb {
-    font-size: 0.78rem;
-    opacity: 0.5;
-    margin-bottom: 20px;
-}
-
+/* ===== Subtle grow/transition animace – product card hover ===== */
 .woocommerce ul.products li.product,
-.woocommerce-page ul.products li.product {
-    transition: transform var(--transition), box-shadow var(--transition);
+.ast-article-single,
+.ast-post {
+  transition: transform .2s cubic-bezier(.4,0,.2,1), box-shadow .18s;
 }
-.woocommerce ul.products li.product:hover,
-.woocommerce-page ul.products li.product:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+.woocommerce ul.products li.product:hover {
+  transform: scale(1.02) translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0,0,0,.13);
 }
-.woocommerce ul.products li.product a img {
-    transition: transform 0.3s ease;
-}
-.woocommerce ul.products li.product:hover a img { transform: scale(1.02); }
-
-/* === SP-CATEGORY-ARCHIVE – override pro bile tema === */
-.sp-product-item {
-    border-bottom-color: var(--color-border) !important;
-    transition: padding-left var(--transition), background var(--transition);
-}
-.sp-product-item:first-child { border-top-color: var(--color-border) !important; }
-.sp-product-item:hover { background: rgba(0,0,0,0.02); }
-.sp-product-item h3 { color: var(--color-text); }
-
-.sp-image-frame {
-    border-color: var(--color-text) !important;
-    box-shadow: 4px 4px 0 0 var(--color-text) !important;
-    border-radius: 0 !important;
-}
-
-.sp-variation-row select, .sp-qty {
-    background: var(--color-bg);
-    color: var(--color-text);
-    border-color: var(--color-border);
-}
-
-.sp-inline-price, .sp-mobile-price { color: var(--color-text); }
-
-.sp-detail-btn {
-    color: var(--color-text) !important;
-    font-size: 0.8rem;
-    text-decoration: underline;
-    opacity: 0.75;
-    transition: opacity var(--transition);
-    background: none !important;
-    border: none !important;
-    padding: 0 !important;
-    text-transform: none !important;
-    font-weight: 400 !important;
-    letter-spacing: 0 !important;
-    box-shadow: none !important;
-    transform: none !important;
-}
-.sp-detail-btn:hover { opacity: 1; background: none !important; transform: none !important; box-shadow: none !important; }
-
-.sp-mobile-img {
-    border-color: var(--color-text) !important;
-    box-shadow: 4px 4px 0 0 rgba(0,0,0,0.15) !important;
-}
-
-.sp-product-list::-webkit-scrollbar       { width: 4px; }
-.sp-product-list::-webkit-scrollbar-track { background: #f5f5f5; }
-.sp-product-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
-
-/* === FOOTER === */
-.site-footer, #colophon {
-    background: #f5f5f5;
-    border-top: 1px solid var(--color-border);
-    color: var(--color-text);
-    font-size: 0.82rem;
-}
-
-/* === UTILITY === */
-.container, .entry-content, .site-main { max-width: var(--max-width); }

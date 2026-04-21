@@ -1,54 +1,37 @@
 <?php
 /*
-Theme Name: GeneratePress Child
-Description: SUPR child theme – černobílý design systém pro WooCommerce eshop.
-Author: suseneprazene.cz
-Template: generatepress
-Version: 1.1.0
+Theme Name: Astra Child
+Description: Astra child theme – moderní černobílý design.
+Author: tvé_jméno
+Template: astra
+Version: 1.0.0
 */
 
-// Enqueue parent styles
-function generatepress_child_enqueue_styles() {
-    wp_enqueue_style('generatepress-parent-style', get_template_directory_uri() . '/style.css');
-    wp_enqueue_style('generatepress-child-style', get_stylesheet_uri(), array('generatepress-parent-style'));
+// Načtení stylů child + parent theme + Google fonts
+function astra_child_enqueue_styles() {
+    wp_enqueue_style( 'astra-parent-style', get_template_directory_uri() . '/style.css' );
+    wp_enqueue_style( 'astra-child-style', get_stylesheet_uri(), array('astra-parent-style'), '1.0' );
 }
-add_action('wp_enqueue_scripts', 'generatepress_child_enqueue_styles');
+add_action( 'wp_enqueue_scripts', 'astra_child_enqueue_styles' );
 
-// ── Cabinet Grotesk font z Fontshare ────────────────────────
-function sp_enqueue_fonts() {
+// Volitelně – načti Cabinet Grotesk zvlášť, pokud Astra nebo pluginy blokují @import v CSS:
+add_action( 'wp_enqueue_scripts', function() {
     wp_enqueue_style(
-        'cabinet-grotesk',
-        'https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500,400&display=swap',
-        [],
+        'cabinet-grotesk-font',
+        'https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,400&display=swap',
+        false,
         null
     );
-}
-add_action('wp_enqueue_scripts', 'sp_enqueue_fonts');
+});
 
-// ── Hamburger menu JS (inline) ───────────────────────────────
-function sp_hamburger_script() {
-    ?>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var toggle = document.querySelector('.sp-hamburger');
-        if (toggle) {
-            toggle.addEventListener('click', function() {
-                document.body.classList.toggle('menu-open');
-                var expanded = document.body.classList.contains('menu-open');
-                toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-            });
-        }
-    });
-    </script>
-    <?php
-}
-add_action('wp_footer', 'sp_hamburger_script');
+// Tady můžeš přidat vlastní funkce/hooky pro Astra (viz https://wpastra.com/docs/astra-action-hooks/)
 
-// ── Hamburger button do headeru ──────────────────────────────
-function sp_add_hamburger_button() {
-    echo '<button class="sp-hamburger" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-    </button>';
-}
-add_action('generate_before_header_content', 'sp_add_hamburger_button');
+/* Př. vlastní hook do headeru:
+add_action('astra_header', function() {
+   ?>
+   // sem dej HTML/JS pro custom header věci podle potřeby
+   <?php
+});
+*/
 
+// … další PHP úpravy (widgety, WooCommerce aj.) sem ↓
