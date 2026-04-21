@@ -76,6 +76,7 @@ body {
 .main-header-menu .menu-item a:focus-visible {
   color: #000; /* ještě tmavší na hover */
   transform: translateY(-1px);
+  animation: menu-pulse 0.25s;
 }
 
 /* Aktivní položka: DOUBLE underline v ČERNÉ */
@@ -87,185 +88,49 @@ body {
   padding-bottom: 6px;
 }
 
-/* ===== Submenu ===== */
-.main-header-menu .sub-menu {
-  background: #111;
-  border-radius: 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.30);
-}
-.main-header-menu .sub-menu a {
-  color: #f5f5f5;
-  font-size: 0.97rem;
-  padding: 10px 20px;
-}
-.main-header-menu .sub-menu a:hover {
-  background: #222;
-}
-
-/* ===== Hamburger menu – responsive ===== */
-.ast-header-break-point .main-header-bar {
-  position: relative;
-}
-.ast-header-break-point .main-header-bar .main-header-menu {
-  flex-direction: column;
-  background: #111;
-}
-.ast-header-break-point .ast-mobile-menu-buttons {
-  z-index: 999;
-}
-.ast-header-break-point .main-header-menu .menu-item {
-  padding: 10px 0;
-}
-.ast-header-break-point .main-header-menu .menu-item:not(:last-child)::after {
-  display: none;
-}
-
-/* ===== Headings & typografie ===== */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cabinet Grotesk', sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: #fff;
-}
-h1 { font-size: 1.8rem; margin-bottom: 1.2rem; }
-h2 { font-size: 1.4rem; margin-bottom: 1.2rem; }
-h3 { font-size: 1.1rem; }
-h4 { font-size: 0.95rem; }
-h5, h6 { font-size: 0.875rem; }
-
-/* ===== Buttony ===== */
-button,
-.button,
-input[type="submit"],
-.wp-block-button__link,
-.wc-block-components-button,
-.single_add_to_cart_button,
-.add_to_cart_button,
-.custom-product-btn {
+/* ===== TLAČÍTKA - černé, hranaté, invert při hover ===== */
+button, .button, input[type="submit"], .wp-block-button__link,
+.wc-block-components-button, .single_add_to_cart_button,
+.add_to_cart_button, .ast-button, .checkout-button {
   background: #111;
   color: #fff;
   border: 1px solid #111;
   border-radius: 0;
-  padding: 11px 28px;
-  font-size: 0.89rem;
-  font-family: inherit;
-  font-weight: 750;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(.4,0,.2,1);
-  position: relative;
-}
-button:hover,
-.button:hover,
-input[type="submit"]:hover,
-.wp-block-button__link:hover,
-.wc-block-components-button:hover,
-.single_add_to_cart_button:hover,
-.add_to_cart_button:hover,
-.custom-product-btn:hover {
-  background: #f5f5f5;
-  color: #111;
-  border-color: #111;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.30);
-}
-
-/* ===== Microinterakce & focus - accessibility ===== */
-a, button, input, select, textarea {
-  transition: all 0.2s;
-}
-:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 2.5px;
-}
-
-/* ===== Input fields: glassmorphism hint ===== */
-input,
-textarea,
-select {
-  background: rgba(255,255,255,0.05);
-  color: #f5f5f5;
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 4px;
-  padding: 10px 12px;
-  backdrop-filter: blur(3.5px);
-}
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: #fff;
-  outline: 2px solid rgba(255,255,255,0.7);
-}
-
-/* ===== Custom scrollbar (globální) ===== */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #181818;
-}
-::-webkit-scrollbar-thumb {
-  background: #444;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #7a7a7a;
-}
-
-/* ===== Loading animace pro obrázky ===== */
-@keyframes sp-pulse {
-  0%,100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-img.loading, img[loading="lazy"] {
-  animation: sp-pulse 1.5s linear infinite;
-}
-
-/* ===== Social ikony hover ===== */
-a[href*="facebook"]:hover,
-.social-icon-facebook:hover { color: #1877F2 !important; }
-a[href*="instagram"]:hover,
-.social-icon-instagram:hover { color: #E4405F !important; }
-a[href*="youtube"]:hover,
-.social-icon-youtube:hover { color: #FF0000 !important; }
-a[href*="pinterest"]:hover,
-.social-icon-pinterest:hover { color: #E60023 !important; }
-a[href*="tiktok"]:hover,
-.social-icon-tiktok:hover { color: #010101 !important; }
-a[href*="twitter"]:hover,
-a[href*="x.com"]:hover,
-.social-icon-x:hover { color: #000 !important; }
-
-
-/* ===== WooCommerce – badge, cena, product list scrollbar ===== */
-.woocommerce span.onsale,
-.woocommerce ul.products li.product .onsale {
-  background: #b85c1a;
-  color: #fff;
-  border-radius: 0;
+  padding: 10px 24px;
+  font-size: 1rem;
   font-weight: 700;
-  top: 10px;
-  left: 10px;
-  padding: 5px 16px;
-  font-size: 0.88em;
-}
-.woocommerce ul.products li.product {
-  background: transparent;
-}
-.woocommerce ul.products {
-  scrollbar-width: thin;
-  scrollbar-color: #555 #1a1a1a;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  cursor: pointer;
+  box-shadow: none;
+  letter-spacing: 0.03em;
 }
 
-/* ===== Subtle grow/transition animace – product card hover ===== */
-.woocommerce ul.products li.product,
-.ast-article-single,
-.ast-post {
-  transition: transform .2s cubic-bezier(.4,0,.2,1), box-shadow .18s;
+/* Hover stav: inverze a pulzační efekt textu */
+button:hover, .button:hover, input[type="submit"]:hover, .wp-block-button__link:hover,
+.wc-block-components-button:hover, .single_add_to_cart_button:hover,
+.add_to_cart_button:hover, .ast-button:hover, .checkout-button:hover {
+  background: #fff;
+  color: #111;
+  border: 1px solid #111;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
 }
-.woocommerce ul.products li.product:hover {
-  transform: scale(1.02) translateY(-3px);
-  box-shadow: 0 8px 28px rgba(0,0,0,.13);
+button:hover span, .button:hover span, input[type="submit"]:hover span,
+.wp-block-button__link:hover span, .wc-block-components-button:hover span,
+.single_add_to_cart_button:hover span, .add_to_cart_button:hover span,
+.ast-button:hover span, .checkout-button:hover span {
+  animation: button-text-pulse 0.23s;
+}
+
+/* ===== Pulzování textu (keyframes) ===== */
+@keyframes button-text-pulse {
+  0% { text-shadow: 0 0 0 #111; }
+  50% { text-shadow: 0 0 7px #111; }
+  100% { text-shadow: 0 0 0 #111; }
+}
+@keyframes menu-pulse {
+  0% { text-shadow: 0 0 0 #111; }
+  50% { text-shadow: 0 0 7px #111; }
+  100% { text-shadow: 0 0 0 #111; }
 }
