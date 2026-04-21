@@ -21,36 +21,39 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* ===== Hlavička a menu (Astra struktura) ===== */
+/* ===== Hlavička a menu (Astra struktura) - ÚPLNĚ NOVĚ ===== */
 .main-header-bar {
-  background: #111;
-  border-bottom: 1px solid #262626;
+  background: #fff; /* bílé pozadí */
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .ast-site-identity, .ast-site-title {
-  color: #f5f5f5;
+  color: #111; /* černý text */
   font-family: 'Cabinet Grotesk', sans-serif;
   font-weight: 700;
 }
 
-
+/* Menu wrappery */
 .main-header-menu,
 .ast-main-header-bar-navigation {
   display: flex;
   gap: 0;
   align-items: center;
+  background: #fff; /* bílé pozadí i v podwraperech */
 }
 
+/* Položky menu */
 .main-header-menu .menu-item {
   margin: 0;
   padding: 0 20px 0 0;
   position: relative;
 }
 
+/* Oddělovač mezi položkami (černá čárkovaná čára) */
 .main-header-menu .menu-item:not(:last-child)::after {
   content: "";
   display: inline-block;
-  border-right: 1px dashed rgba(255,255,255,0.25);
+  border-right: 1px dashed rgba(0,0,0,0.25);
   height: 1.3em;
   position: absolute;
   right: 7px; top: 50%;
@@ -58,25 +61,29 @@ body {
   pointer-events: none;
 }
 
+/* ODKAZY v menu */
 .main-header-menu .menu-item a {
-  color: #f5f5f5;
+  color: #111; /* černý text */
   text-decoration: none;
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: 1rem;
   padding: 14px 0 8px 0;
   transition: all .2s;
+  background: transparent;
 }
+
 .main-header-menu .menu-item a:hover,
 .main-header-menu .menu-item a:focus-visible {
-  color: #fff;
+  color: #000; /* ještě tmavší na hover */
   transform: translateY(-1px);
 }
 
+/* Aktivní položka: DOUBLE underline v ČERNÉ */
 .main-header-menu .current-menu-item > a,
 .main-header-menu .current-menu-ancestor > a {
   position: relative;
-  box-shadow: 0 3px 0 0 #fff;
-  border-bottom: 2px solid #fff;
+  box-shadow: 0 3px 0 0 #111;
+  border-bottom: 2px solid #111;
   padding-bottom: 6px;
 }
 
