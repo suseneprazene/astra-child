@@ -21,16 +21,32 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* Header, menu atd. nechej jak je – už jsou bílé/černé */
+/* ===== GLOBÁLNÍ PŘEBITÍ MODRÉ (Astra default) ===== */
+/* Astra používá modrou na hodně místech – přebijeme ji na celém webu */
+a {
+  color: #111;
+  text-decoration: underline;
+  transition: font-size 0.18s ease, text-decoration 0.18s ease;
+}
+a:hover,
+a:focus-visible {
+  color: #111;
+  text-decoration: none;
+  font-size: 1.04em; /* mírné zvětšení při hoveru */
+}
 
-/* ===== Hlavička a menu (Astra struktura) - ÚPLNĚ NOVĚ ===== */
+/* ===== Hlavička a menu (Astra struktura) ===== */
 .main-header-bar {
-  background: #fff; /* bílé pozadí */
+  background: #fff;
   border-bottom: 1px solid #e0e0e0;
 }
 
-.ast-site-identity, .ast-site-title {
-  color: #111; /* černý text */
+.ast-site-identity,
+.ast-site-title,
+.ast-site-title a,
+.site-title,
+.site-title a {
+  color: #111 !important;
   font-family: 'Cabinet Grotesk', sans-serif;
   font-weight: 700;
 }
@@ -41,7 +57,7 @@ body {
   display: flex;
   gap: 0;
   align-items: center;
-  background: #fff; /* bílé pozadí i v podwraperech */
+  background: #fff;
 }
 
 /* Položky menu */
@@ -51,7 +67,7 @@ body {
   position: relative;
 }
 
-/* Oddělovač mezi položkami (černá čárkovaná čára) */
+/* Oddělovač mezi položkami */
 .main-header-menu .menu-item:not(:last-child)::after {
   content: "";
   display: inline-block;
@@ -63,25 +79,34 @@ body {
   pointer-events: none;
 }
 
-/* ODKAZY v menu */
-.main-header-menu .menu-item a {
-  color: #111; /* černý text */
-  text-decoration: none;
+/* ODKAZY v menu – přebít Astra modrou */
+.main-header-menu .menu-item a,
+.main-header-menu .menu-item a:visited,
+#site-navigation .menu-item a,
+.ast-main-header-bar-navigation a,
+.main-navigation a {
+  color: #111 !important;
+  text-decoration: none !important;
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: 1rem;
   padding: 14px 0 8px 0;
-  transition: all .2s;
+  transition: color 0.2s, font-size 0.18s ease, transform 0.2s;
   background: transparent;
 }
 
 .main-header-menu .menu-item a:hover,
-.main-header-menu .menu-item a:focus-visible {
-  color: #000; /* ještě tmavší na hover */
+.main-header-menu .menu-item a:focus-visible,
+#site-navigation .menu-item a:hover,
+.ast-main-header-bar-navigation a:hover,
+.main-navigation a:hover {
+  color: #000 !important;
+  font-size: 1.04rem;
+  text-decoration: none !important;
   transform: translateY(-1px);
   animation: menu-pulse 0.25s;
 }
 
-/* Aktivní položka: DOUBLE underline v ČERNÉ */
+/* Aktivní položka: double underline v černé */
 .main-header-menu .current-menu-item > a,
 .main-header-menu .current-menu-ancestor > a {
   position: relative;
@@ -90,49 +115,745 @@ body {
   padding-bottom: 6px;
 }
 
-/* ===== TLAČÍTKA - černé, hranaté, invert při hover ===== */
-button, .button, input[type="submit"], .wp-block-button__link,
-.wc-block-components-button, .single_add_to_cart_button,
-.add_to_cart_button, .ast-button, .checkout-button {
-  background: #111;
-  color: #fff;
-  border: 1px solid #111;
-  border-radius: 0;
-  padding: 10px 24px;
-  font-size: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: all 0.2s;
+/* ===== IKONY košíku, účtu (Astra WooCommerce header icons) ===== */
+.ast-header-woo-cart .count,
+.ast-header-woo-cart a,
+.ast-header-woo-cart svg,
+.ast-cart-menu-wrap .count,
+.ast-cart-menu-wrap a,
+.woocommerce-cart-link,
+.woocommerce-cart-link svg,
+.ast-masthead-custom-menu-items .ast-icon,
+.ast-masthead-custom-menu-items a,
+.ast-masthead-custom-menu-items svg,
+.ast-header-account-login a,
+.ast-header-account-logout a,
+.ast-header-account a,
+/* WC block icons */
+.wc-block-mini-cart__button,
+.wc-block-mini-cart__quantity-badge {
+  color: #111 !important;
+  fill: #111 !important;
+  stroke: #111 !important;
+  border-color: #111 !important;
+}
+
+/* Badge (číslo produktů v košíku) */
+.ast-cart-menu-wrap .count,
+.wc-block-mini-cart__quantity-badge {
+  background: #111 !important;
+  color: #fff !important;
+  border: 1px solid #111 !important;
+}
+
+/* SVG ikony (košík, user) – přepsat fill/stroke */
+.ast-header-woo-cart svg path,
+.ast-masthead-custom-menu-items svg path,
+.ast-header-account svg path {
+  fill: #111 !important;
+  stroke: #111 !important;
+}
+
+/* ===== TLAČÍTKA – černé, hranaté, invert + font-size při hover ===== */
+button,
+.button,
+input[type="submit"],
+.wp-block-button__link,
+.wc-block-components-button,
+.single_add_to_cart_button,
+.add_to_cart_button,
+.ast-button,
+.checkout-button,
+a.button,
+a.checkout-button,
+.woocommerce-button,
+.wc-block-cart__submit-button {
+  background: #111 !important;
+  color: #fff !important;
+  border: 1px solid #111 !important;
+  border-radius: 0 !important;
+  padding: 10px 24px !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
   cursor: pointer;
   box-shadow: none;
-  letter-spacing: 0.03em;
+  text-decoration: none !important;
+  display: inline-block;
+  transition: background 0.2s, color 0.2s, font-size 0.18s ease, transform 0.2s, box-shadow 0.2s;
 }
 
-/* Hover stav: inverze a pulzační efekt textu */
-button:hover, .button:hover, input[type="submit"]:hover, .wp-block-button__link:hover,
-.wc-block-components-button:hover, .single_add_to_cart_button:hover,
-.add_to_cart_button:hover, .ast-button:hover, .checkout-button:hover {
-  background: #fff;
-  color: #111;
-  border: 1px solid #111;
+button:hover,
+.button:hover,
+input[type="submit"]:hover,
+.wp-block-button__link:hover,
+.wc-block-components-button:hover,
+.single_add_to_cart_button:hover,
+.add_to_cart_button:hover,
+.ast-button:hover,
+.checkout-button:hover,
+a.button:hover,
+a.checkout-button:hover,
+.woocommerce-button:hover,
+.wc-block-cart__submit-button:hover {
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid #111 !important;
+  font-size: 1.06rem !important;
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-}
-button:hover span, .button:hover span, input[type="submit"]:hover span,
-.wp-block-button__link:hover span, .wc-block-components-button:hover span,
-.single_add_to_cart_button:hover span, .add_to_cart_button:hover span,
-.ast-button:hover span, .checkout-button:hover span {
-  animation: button-text-pulse 0.23s;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  text-decoration: none !important;
 }
 
-/* ===== Pulzování textu (keyframes) ===== */
+/* Pulzování textu na všech tlačítkách při hoveru */
+button:hover,
+button:hover span,
+.button:hover,
+.button:hover span,
+input[type="submit"]:hover,
+input[type="submit"]:hover span,
+.wp-block-button__link:hover,
+.wp-block-button__link:hover span,
+.wc-block-components-button:hover,
+.wc-block-components-button:hover span,
+.single_add_to_cart_button:hover,
+.single_add_to_cart_button:hover span,
+.add_to_cart_button:hover,
+.add_to_cart_button:hover span,
+.ast-button:hover,
+.ast-button:hover span,
+.checkout-button:hover,
+.checkout-button:hover span,
+.wc-block-cart__submit-button:hover,
+.wc-block-cart__submit-button:hover span {
+  animation: button-text-pulse 0.28s ease !important;
+}
+
+/* ===== TLAČÍTKO ODESLAT OBJEDNÁVKU – bez změny velikosti ===== */
+.wc-block-components-checkout-place-order-button,
+.wc-block-components-checkout-place-order-button.contained {
+  background: #111 !important;
+  color: #fff !important;
+  border: 1px solid #111 !important;
+  border-radius: 0 !important;
+  font-size: 1rem !important;        /* pevná velikost – nesmí se měnit */
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+  transform: none !important;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s !important;
+}
+.wc-block-components-checkout-place-order-button:hover,
+.wc-block-components-checkout-place-order-button.contained:hover {
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid #111 !important;
+  font-size: 1rem !important;        /* zachovat velikost, žádný scale/translateY */
+  transform: none !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10) !important;
+  animation: button-text-pulse 0.28s ease !important;
+}
+
+/* ===== MINI-CART DRAWER – texty a tlačítka ===== */
+/* Drawer pozadí */
+.wc-block-mini-cart__drawer .components-panel,
+.wc-block-mini-cart__drawer .wc-block-mini-cart__template-part {
+  background: #fff !important;
+  color: #111 !important;
+}
+
+/* Texty v draweru */
+.wc-block-mini-cart__drawer *,
+.wc-block-mini-cart__template-part * {
+  color: #111 !important;
+}
+
+/* Přebít bílý text na tlačítkách v mini-cart draweru –
+   "Zobrazit košík" a "Pokladna" jsou .wc-block-mini-cart__footer-actions a */
+.wc-block-mini-cart__footer-actions .wc-block-mini-cart__footer-cart,
+.wc-block-mini-cart__footer-actions .wc-block-mini-cart__footer-checkout,
+.wc-block-mini-cart__footer .wc-block-components-button {
+  display: inline-block !important;
+  padding: 10px 24px !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+  border-radius: 0 !important;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s !important;
+}
+
+/* "Zobrazit košík" – outline styl (bílé pozadí, černý rámeček) */
+.wc-block-mini-cart__footer-actions .wc-block-mini-cart__footer-cart {
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid #111 !important;
+}
+.wc-block-mini-cart__footer-actions .wc-block-mini-cart__footer-cart:hover {
+  background: #111 !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+
+/* "Pokladna" – plné černé tlačítko */
+.wc-block-mini-cart__footer-actions .wc-block-mini-cart__footer-checkout {
+  background: #111 !important;
+  color: #fff !important;
+  border: 1px solid #111 !important;
+}
+.wc-block-mini-cart__footer-actions .wc-block-mini-cart__footer-checkout:hover {
+  background: #fff !important;
+  color: #111 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+
+/* Mezisouček */
+.wc-block-mini-cart__footer .wc-block-mini-cart__footer-subtotal,
+.wc-block-mini-cart__footer .wc-block-cart__totals-title {
+  color: #111 !important;
+}
+
+/* ===== QUANTITY SELECTOR (+/−) – jemný, ne černý blok ===== */
+.wc-block-components-quantity-selector {
+  display: inline-flex !important;
+  align-items: center !important;
+  border: 1px solid #ccc !important;
+  border-radius: 0 !important;
+  overflow: hidden;
+  background: #fff !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Odeber focus outline z celého quantity selectoru i jeho tlačítek */
+.wc-block-components-quantity-selector:focus,
+.wc-block-components-quantity-selector:focus-within,
+.wc-block-components-quantity-selector:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #ccc !important;
+}
+
+.wc-block-components-quantity-selector__button {
+  background: #fff !important;
+  color: #111 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  width: 32px !important;
+  height: 32px !important;
+  font-size: 1.1rem !important;
+  font-weight: 400 !important;
+  padding: 0 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  box-shadow: none !important;
+  line-height: 1 !important;
+  transform: none !important;
+  transition: background 0.15s, color 0.15s !important;
+}
+.wc-block-components-quantity-selector__button:hover {
+  background: #111 !important;
+  color: #fff !important;
+  transform: none !important;
+  box-shadow: none !important;
+  font-size: 1.1rem !important;
+}
+
+.wc-block-components-quantity-selector__input {
+  width: 40px !important;
+  text-align: center !important;
+  border: none !important;
+  border-left: 1px solid #ccc !important;
+  border-right: 1px solid #ccc !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+  color: #111 !important;
+  font-size: 0.95rem !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ===== ODSTRANIT POLOŽKU – přesun X k total ===== */
+
+/* Skryjeme původní textový "Odstranit položku" link na jeho výchozím místě */
+.wc-block-cart-item__remove-link {
+  /* Přesuneme ho absolutně k buňce s cenou */
+  position: absolute !important;
+  /* Výchozí pozici skryjeme – zobrazíme přes container */
+  display: none !important;
+}
+
+/* Na buňce s cenou zapneme relative positioning */
+.wc-block-cart-item__total {
+  position: relative !important;
+}
+
+/* X tlačítko – přidáme přes sibling selector: pokud je .wc-block-cart-item__remove-link
+   hned po nebo uvnitř .wc-block-cart-item__total, zobrazíme ho */
+.wc-block-cart-item__total .wc-block-cart-item__remove-link,
+/* Nebo přes obecný selektor – X přidán do total wrapperu via JS níže */
+.wc-block-cart-item__total > .remove-x-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 20px !important;
+  height: 20px !important;
+  background: transparent !important;
+  color: #999 !important;
+  border: none !important;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: color 0.15s !important;
+}
+.wc-block-cart-item__total > .remove-x-btn:hover {
+  color: #111 !important;
+  background: transparent !important;
+  transform: none !important;
+  box-shadow: none !important;
+  font-size: 0.85rem !important;
+}
+
+/* ===== MENU – animace podtržení zleva doprava při hoveru ===== */
+/* Přidáme ::after pseudo-element s transformací */
+.main-header-menu .menu-item > a,
+#site-navigation .menu-item > a,
+.ast-main-header-bar-navigation > ul > li > a,
+.main-navigation > ul > li > a {
+  position: relative !important;
+  /* Odstraníme border-bottom z hover stavu – nahradíme ::after animací */
+}
+
+/* Linka – skrytá ve výchozím stavu */
+.main-header-menu .menu-item > a::after,
+#site-navigation .menu-item > a::after,
+.ast-main-header-bar-navigation > ul > li > a::after,
+.main-navigation > ul > li > a::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  bottom: 2px !important;
+  left: 0 !important;
+  width: 0 !important;
+  height: 2px !important;
+  background: #111 !important;
+  transition: width 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  pointer-events: none !important;
+}
+
+/* Hover – linka se vykreslí zleva doprava */
+.main-header-menu .menu-item > a:hover::after,
+#site-navigation .menu-item > a:hover::after,
+.ast-main-header-bar-navigation > ul > li > a:hover::after,
+.main-navigation > ul > li > a:hover::after {
+  width: 100% !important;
+}
+
+/* Aktivní položka – linka zůstane stále viditelná */
+.main-header-menu .current-menu-item > a::after,
+.main-header-menu .current-menu-ancestor > a::after {
+  width: 100% !important;
+}
+
+/* Odebereme starý box-shadow underline ze aktivní položky (nahrazen ::after) */
+.main-header-menu .current-menu-item > a,
+.main-header-menu .current-menu-ancestor > a {
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+
+/* ===== Keyframes ===== */
 @keyframes button-text-pulse {
-  0% { text-shadow: 0 0 0 #111; }
-  50% { text-shadow: 0 0 7px #111; }
+  0%   { text-shadow: 0 0 0 #111; }
+  50%  { text-shadow: 0 0 7px #111; }
   100% { text-shadow: 0 0 0 #111; }
 }
+
 @keyframes menu-pulse {
-  0% { text-shadow: 0 0 0 #111; }
-  50% { text-shadow: 0 0 7px #111; }
+  0%   { text-shadow: 0 0 0 #111; }
+  50%  { text-shadow: 0 0 7px #111; }
   100% { text-shadow: 0 0 0 #111; }
+}
+
+/* Aktivní košík v menu – žádný rámeček ani podtržení */
+.ast-site-header-cart-li.current-menu-item > a,
+.ast-site-header-cart-li.current-menu-item > a::after {
+  box-shadow: none !important;
+  border-bottom: none !important;
+  width: 0 !important;
+}
+/* Přebít bílý text – contained varianta má vlastní barvy */
+.wc-block-cart__submit-container .wc-block-cart__submit-button,
+.wc-block-cart__submit-container .wc-block-components-button,
+.wc-block-cart__submit-button.contained,
+.wc-block-components-button.contained {
+  background: #111 !important;
+  color: #fff !important;
+  border: 1px solid #111 !important;
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+}
+.wc-block-cart__submit-container .wc-block-cart__submit-button:hover,
+.wc-block-cart__submit-container .wc-block-components-button:hover,
+.wc-block-cart__submit-button.contained:hover,
+.wc-block-components-button.contained:hover {
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid #111 !important;
+}
+
+/* Odstraň modrý outline/box-shadow při focusu na submit tlačítku */
+.wc-block-cart__submit-container .wc-block-cart__submit-button:focus,
+.wc-block-cart__submit-container .wc-block-cart__submit-button:focus-visible,
+.wc-block-cart__submit-container .wc-block-components-button:focus,
+.wc-block-cart__submit-container .wc-block-components-button:focus-visible,
+.wc-block-components-button:focus,
+.wc-block-components-button:focus-visible,
+button:focus,
+button:focus-visible,
+input[type="submit"]:focus,
+input[type="submit"]:focus-visible {
+  outline: 2px solid #111 !important;
+  outline-offset: 2px !important;
+  box-shadow: none !important;
+}
+
+/* ===== KUPÓNOVÉ TLAČÍTKO – bílý text ===== */
+.wc-block-components-totals-coupon__button,
+.wc-block-components-totals-coupon__button.contained {
+  background: #111 !important;
+  color: #fff !important;
+  border: 1px solid #111 !important;
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+}
+.wc-block-components-totals-coupon__button:hover {
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid #111 !important;
+}
+
+/* ===== MINI-CART IKONA – odeber rámeček, srovnej výšku s účtem ===== */
+.cart-container,
+.ast-cart-desktop-position-,
+[class*="ast-cart-desktop-position-"],
+[class*="ast-cart-mobile-position-"],
+[class*="ast-cart-tablet-position-"] {
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Tlačítko mini-cart – odeber border a přebytečný padding */
+.wc-block-mini-cart__button,
+.wc-block-mini-cart > button,
+.wc-block-mini-cart__button.has-icon {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  color: #111 !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  transform: none !important;
+  min-width: unset !important;
+}
+.wc-block-mini-cart__button:hover,
+.wc-block-mini-cart > button:hover {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  color: #111 !important;
+  font-size: 1rem !important;
+}
+.wc-block-mini-cart__button:focus,
+.wc-block-mini-cart__button:focus-visible,
+.wc-block-mini-cart > button:focus,
+.wc-block-mini-cart > button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* SVG ikona košíku */
+.wc-block-mini-cart__button svg,
+.wc-block-mini-cart > button svg {
+  width: 1.3em !important;
+  height: 1.3em !important;
+  fill: #111 !important;
+  color: #111 !important;
+  vertical-align: middle !important;
+}
+
+/* Badge čísla – kompaktní, bez rámečku */
+.wc-block-mini-cart__quantity-badge {
+  background: #111 !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: 0.7rem !important;
+  min-width: 16px !important;
+  height: 16px !important;
+  line-height: 16px !important;
+  padding: 0 4px !important;
+  border-radius: 8px !important;
+}
+
+/* ===== MINI-CART DRAWER – tlačítka "Zobrazit košík" / "Pokladna" bílý text ===== */
+.woocommerce-mini-cart__buttons.buttons a,
+.woocommerce-mini-cart__buttons.buttons a.button,
+.woocommerce-mini-cart__buttons .checkout,
+.woocommerce-mini-cart__buttons .wc-forward {
+  color: #fff !important;
+  background: #111 !important;
+  border: 1px solid #111 !important;
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  padding: 10px 24px !important;
+  transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s !important;
+}
+.woocommerce-mini-cart__buttons.buttons a:hover,
+.woocommerce-mini-cart__buttons.buttons a.button:hover,
+.woocommerce-mini-cart__buttons .checkout:hover,
+.woocommerce-mini-cart__buttons .wc-forward:hover {
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid #111 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10) !important;
+}
+
+/* ===== KOŠÍK A POKLADNA – symetrický padding (sidebar layout) ===== */
+/* is-medium třída určuje layout – přidáme padding na oba sloupce */
+.wc-block-components-sidebar-layout.wc-block-cart,
+.wc-block-components-sidebar-layout.wc-block-checkout {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Hlavní obsah (levý sloupec) */
+.wc-block-cart .wc-block-components-main,
+.wc-block-checkout .wc-block-components-main {
+  padding-left: 24px !important;
+  box-sizing: border-box !important;
+}
+
+/* Sidebar (pravý sloupec) */
+.wc-block-cart .wc-block-components-sidebar,
+.wc-block-checkout .wc-block-components-sidebar {
+  padding-right: 24px !important;
+  box-sizing: border-box !important;
+}
+
+/* Na mobilu (single column) – symetrický padding na celý blok */
+@media (max-width: 781px) {
+  .wc-block-components-sidebar-layout.wc-block-cart,
+  .wc-block-components-sidebar-layout.wc-block-checkout {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
+  }
+  .wc-block-cart .wc-block-components-main,
+  .wc-block-checkout .wc-block-components-main,
+  .wc-block-cart .wc-block-components-sidebar,
+  .wc-block-checkout .wc-block-components-sidebar {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+
+/* ===== HAMBURGER – správný vzhled vždy, i po kliknutí ===== */
+.menu-toggle,
+button.menu-toggle,
+.ast-mobile-menu-trigger-fill .menu-toggle,
+.ast-mobile-menu-trigger-minimal .menu-toggle,
+.ast-header-break-point .menu-toggle {
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid #111 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 8px 10px !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  transform: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: background 0.2s, color 0.2s !important;
+  animation: none !important;
+}
+
+/* Hover – jemné šedé, ne černé */
+.menu-toggle:hover,
+button.menu-toggle:hover {
+  background: #f5f5f5 !important;
+  color: #111 !important;
+  border: 1px solid #111 !important;
+  transform: none !important;
+  box-shadow: none !important;
+  font-size: 1rem !important;
+  animation: none !important;
+}
+
+/* Po kliknutí – bílé pozadí zůstane (ne černé) */
+.ast-header-break-point .toggled .menu-toggle,
+.ast-header-break-point .ast-mobile-menu-open .menu-toggle,
+[aria-expanded="true"].menu-toggle,
+.menu-toggle.toggled,
+.menu-toggle:focus,
+.menu-toggle:focus-visible,
+.menu-toggle:active,
+.main-header-bar-navigation.toggled .menu-toggle {
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid #111 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* SVG čárky – vždy černé */
+.menu-toggle .ast-icon,
+.menu-toggle svg,
+.menu-toggle svg path,
+.menu-toggle .ast-mobile-svg {
+  fill: #111 !important;
+  color: #111 !important;
+  stroke: none !important;
+}
+
+/* Wrapper element – nikdy černé pozadí */
+.ast-builder-layout-element.site-header-focus-item,
+.ast-builder-layout-element.site-header-focus-item:focus,
+.ast-builder-layout-element.site-header-focus-item:focus-within,
+.ast-builder-layout-element.site-header-focus-item.ast-mobile-menu-open,
+.site-header-focus-item:focus,
+.site-header-focus-item:focus-within {
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* ===== MOBIL – košík napravo v .site-header-primary-section-right ===== */
+@media (max-width: 921px) {
+  /* Pravá sekce headeru – zobrazit jako flex řádek */
+  .site-header-primary-section-right.site-header-section.ast-flex.ast-grid-right-section {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  /* Zobrazit mini-cart a account ikony uvnitř pravé sekce */
+  .site-header-primary-section-right .wc-block-mini-cart,
+  .site-header-primary-section-right .ast-site-header-cart,
+  .site-header-primary-section-right .ast-header-woo-cart,
+  .site-header-primary-section-right .ast-header-account,
+  .site-header-primary-section-right .ast-masthead-custom-menu-items {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Pokud jsou ikony jinde v DOM – zobrazit každopádně */
+  .ast-header-break-point .ast-masthead-custom-menu-items,
+  .ast-header-break-point .ast-site-header-cart,
+  .ast-header-break-point .ast-header-woo-cart,
+  .ast-header-break-point .wc-block-mini-cart,
+  .ast-header-break-point .ast-header-account {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Odeber order nastavený minule */
+  .ast-header-break-point .main-header-bar .ast-masthead-custom-menu-items {
+    order: unset !important;
+    margin-left: 0 !important;
+  }
+
+  /* Účet před košíkem, hamburger poslední */
+  .ast-header-break-point .ast-builder-layout-element.ast-header-account {
+    order: 1 !important;
+  }
+  .ast-header-break-point .ast-builder-layout-element .wc-block-mini-cart,
+  .ast-header-break-point .ast-builder-layout-element .ast-site-header-cart {
+    order: 2 !important;
+  }
+  .ast-header-break-point .ast-mobile-menu-trigger,
+  .ast-header-break-point .ast-builder-layout-element:has(.menu-toggle) {
+    order: 3 !important;
+  }
+}
+
+/* ===== RÁMEČEK KOŠÍKU V MENU ===== */
+.ast-menu-cart-outline .ast-cart-menu-wrap .count,
+.ast-menu-cart-outline .ast-addon-cart-wrap {
+  border-width: 0px !important;
+}
+
+/* ============================================================
+   SP Product Archive – styly tlačítek a stavů
+   Vložte do style.css vašeho child theme.
+   ============================================================ */
+
+/* ── Hlavní tlačítko (DO KOŠÍKU / VÝBĚR PRODUKTŮ) ── */
+.custom-product-btn {
+  display: inline-block;
+  padding: 8px 18px;
+  background-color: #111;
+  color: #fff;
+  border: 1px solid #111;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.custom-product-btn:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.custom-product-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Produkt není skladem ── */
+.sp-out-of-stock {
+  display: inline-block;
+  color: #cc0000;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
