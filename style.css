@@ -167,7 +167,8 @@ input[type="submit"],
 a.button,
 a.checkout-button,
 .woocommerce-button,
-.wc-block-cart__submit-button {
+.wc-block-cart__submit-button,
+.woocommerce .woocommerce-error .button, .woocommerce .woocommerce-info .button, .woocommerce .woocommerce-message .button, .woocommerce-page .woocommerce-error .button, .woocommerce-page .woocommerce-info .button, .woocommerce-page .woocommerce-message .button {
   background: #111 !important;
   color: #fff !important;
   border: 1px solid #111 !important;
@@ -196,7 +197,15 @@ input[type="submit"]:hover,
 a.button:hover,
 a.checkout-button:hover,
 .woocommerce-button:hover,
-.wc-block-cart__submit-button:hover {
+.wc-block-cart__submit-button:hover,
+.woocommerce :is(.woocommerce-error, .woocommerce-info, .woocommerce-message) .button:hover,
+.woocommerce-page :is(.woocommerce-error, .woocommerce-info, .woocommerce-message) .button:hover,
+.woocommerce ul.products li.product a.button:hover, 
+.woocommerce ul.products li.product .astra-shop-summary-wrap a.button:hover, 
+.woocommerce-page ul.products li.product a.button:hover, 
+.astra-shop-summary-wrap a.button:hover, 
+.astra-shop-summary-wrap a.single_add_to_cart_button:hover, 
+.astra-shop-summary-wrap a.add_to_cart_button:hover {
   background: #fff !important;
   color: #111 !important;
   border: 1px solid #111 !important;
