@@ -92,6 +92,29 @@ add_action( 'wp_enqueue_scripts', function() {
             color: #111 !important;
         }
 
+        /* Výjimka – tlačítka v gridu i summary musí mít bílý text */
+        .woocommerce ul.products li.product a.button,
+        .woocommerce ul.products li.product .astra-shop-summary-wrap a.button,
+        .woocommerce-page ul.products li.product a.button,
+        .astra-shop-summary-wrap a.button,
+        .astra-shop-summary-wrap a.single_add_to_cart_button,
+        .astra-shop-summary-wrap a.add_to_cart_button {
+            color: #fff !important;
+            background-color: #111 !important;
+        }
+
+        /* Výjimka – košík ikonka (.ast-on-card-button) průhledná */
+        .astra-shop-thumbnail-wrap a.ast-on-card-button {
+            color: #111 !important;
+            background: transparent !important;
+            background-color: transparent !important;
+        }
+
+        /* Out-of-stock text */
+        .ast-shop-product-out-of-stock {
+            color: #111 !important;
+        }
+
     ');
 }, 99 ); // priorita 99 – načte se po Astra stylech
 
@@ -205,3 +228,27 @@ add_action( 'wp_footer', function() { ?>
 <?php });
 
 // … další PHP úpravy (widgety, WooCommerce aj.) sem ↓
+
+add_filter( 'woocommerce_get_availability_text', function( $text, $product ) {
+    if ( ! $product->is_in_stock() ) {
+        return 'Momentálně vyprodáno';
+    }
+    return $text;
+}, 10, 2 );
+
+add_filter( 'woocommerce_sale_flash', function( $html ) {
+    return '<span class="onsale ast-on-card-button ast-onsale-card">Výhodněji</span>';
+} );
+
+// Překlad Astra labelů (Výprodej!, Nedostupné) přes gettext
+add_filter( 'gettext', function( $translated, $text, $domain ) {
+    switch ( $translated ) {
+        case 'Sale!':
+        case 'Výprodej!':
+            return 'Výhodnější';
+        case 'Unavailable':
+        case 'Nedostupné':
+            return 'Momentálně vyprodáno';
+    }
+    return $translated;
+}, 20, 3 );
